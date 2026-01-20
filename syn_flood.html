@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>SYN Flood Incident Report</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Incident Report: SYN Flood Attack</h1>
+
+        <div class="section">
+            <h2>Section 1: Identification of attack</h2>
+            <p>
+                Analysis of the Wireshark TCP/HTTP logs indicates that the downtime was caused by a malicious TCP SYN flood attack from IP address 
+                <span class="mono">203.0.113.0</span>. While normal requests from authorized users were still observed, the logs show a growing volume of SYN packets from the attacker, eventually saturating server connection slots and causing service interruption.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Section 2: Explanation of malfunction</h2>
+
+            <h3>TCP Three-Way Handshake Explained</h3>
+            <ol>
+                <li>SYN (Synchronize) – The client (device) sends a SYN packet to the server, requesting to start a TCP connection.</li>
+                <li>SYN-ACK (Synchronize-Acknowledge) – The server responds with a SYN-ACK packet, acknowledging the client’s request and signaling readiness to establish the connection.</li>
+                <li>ACK (Acknowledge) – The client sends an ACK packet back to the server, completing the handshake and opening the TCP connection for data transfer.</li>
+            </ol>
+
+            <h3>Effect of SYN Flood</h3>
+            <p>
+                A high volume of SYN packets from the attacker occupies the server’s half-open connection table, preventing legitimate TCP handshake requests from completing. 
+                This resource exhaustion can result in denial of service for legitimate users.
+            </p>
+
+            <h3>Log Analysis</h3>
+            <p>
+                Log analysis confirms that the attacker’s SYN packets from 
+                <span class="mono">203.0.113.0</span> prevented legitimate TCP connections from completing, leading to temporary service unavailability.
+            </p>
+        </div>
+
+        <div class="section">
+            <h3>Associated Logs / Spreadsheet</h3>
+            <p>
+                Download or view the associated TCP/HTTP log spreadsheet: 
+                <a href="https://docs.google.com/spreadsheets/d/1JrSEDv-kgvETm8gYoK3hOBQtV_ZIv2nz7aDeO93_5rQ/edit?usp=sharing" target="_blank">View Spreadsheet</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
